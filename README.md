@@ -1,5 +1,5 @@
-Severidad/Intensidad de quemado <br> del incendio de enero de 2022 en
-Macutico, <br> Cordillera Central, República Dominicana
+Severidad de quemado del incendio de <br> enero de 2022 en Macutico,
+Cordillera <br> Central, República Dominicana
 ================
 José Ramón Martínez Batlle
 
@@ -23,7 +23,7 @@ Usando escenas Landsat 8 (prefuego, 22/dic/2021; posfuego, 23/ene/2022),
 y aplicando una versión modificada del [*script* Google Earth Engine de
 UN-Spider “BURN SEVERITY MAPPING USING THE NORMALIZED BURN RATIO
 (NBR)”](https://un-spider.org/advisory-support/recommended-practices/recommended-practice-burn-severity/burn-severity-earth-engine),
-realicé un análisis de la intensidad de quemado en dicho incendio usando
+realicé un análisis de la severidad de quemado en dicho incendio usando
 el diferencial del índice normalizado de quema (dNBR). Adapté el
 *script* fuente a la colección más reciente de imágenes Landsat 8
 (LANDSAT/LC08/C02/T1\_L2).
@@ -33,8 +33,8 @@ el diferencial del índice normalizado de quema (dNBR). Adapté el
 La web está repleta de recursos sobre esta técnica, recomiendo [esta
 particularmente](https://un-spider.org/es/node/10959). Como resultado
 del análisis aplicado a Macutico, estimé unos 9.5 km<sup>2</sup> de
-superficie quemada, predominantemente de baja intensidad. A
-continuación, muestro el código de análisis y visualización de R.
+superficie quemada, predominantemente de baja severidad. A continuación,
+muestro el código de análisis y visualización de R.
 
 ## Paquetes
 
@@ -45,7 +45,7 @@ library(leaflet)
 dnbr <- raster('data/dNBR_macutico.tif')
 ```
 
-## Mapa de intensidad (dNBR) generado en EarthEngine.
+## Mapa de severidad de quemado (dNBR) generado en EarthEngine.
 
 -   Código de EarthEngine
     [aquí](https://code.earthengine.google.com/?scriptPath=users%2Fjoseramon%2Fpublic%3Aburn-severity-macutico-2022).
@@ -87,9 +87,9 @@ rat <- levels(dnbr_rcl)[[1]]
 resol <- res(dnbr_rcl)[1]*res(dnbr_rcl)[2]/1000000
 
 # Etiquetas
-etiq <- c('Regenerado, alta intensidad', 'Regenerado, baja intensidad', 
-          'No quemado', 'Quemado, intensidad baja', 'Quemado, intensidad moderada-baja', 
-          'Quemado, intensidad moderada-alta', 'Quemado, intensidad alta')
+etiq <- c('Regenerado, alta severidad', 'Regenerado, baja severidad', 
+          'No quemado', 'Quemado, severidad baja', 'Quemado, severidad moderada-baja', 
+          'Quemado, severidad moderada-alta', 'Quemado, severidad alta')
 etiq_validas <- c(4, 5)
 
 # Leyenda y colores
@@ -109,13 +109,13 @@ leaflet() %>%
   addProviderTiles("Esri.NatGeoWorldMap", group="ESRI Mapa") %>%
   addProviderTiles("Esri.WorldImagery", group="ESRI Imagen") %>%
   addProviderTiles("CartoDB.Positron", group= "CartoDB") %>%
-  addRasterImage(dnbr_rcl, colors = colores, group = 'Intensidad') %>% 
+  addRasterImage(dnbr_rcl, colors = colores, group = 'Severidad') %>% 
   addLayersControl(
-    overlayGroups = 'Intensidad',
+    overlayGroups = 'Severidad',
     baseGroups = c("ESRI Imagen", "OSM", "ESRI Mapa", "CartoDB")) %>%
   addLegend(
     title = paste(
-      'Intensidad. Total quemado:',
+      'Severidad. Total quemado:',
       round(sum(table(dnbr_rcl[]))*resol, 2),
       'km cuad.'),
     pal = colorFactor(colores, rat$leyenda), values = rat$leyenda,
