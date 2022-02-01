@@ -74,6 +74,9 @@ colores <- c("yellow2", "orange2")
 
 ## Mapa con leaflet
 
+-   Versión interactiva
+    [aquí](https://geofis.github.io/fuego-macutico-202201/README.html)
+
 ``` r
 leaflet() %>%
   addTiles(group = 'OSM') %>%
