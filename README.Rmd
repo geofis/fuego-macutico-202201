@@ -1,18 +1,29 @@
-Severidad/Intensidad de quemado <br> del incendio de enero de 2022 en
-Macutico, <br> Cordillera Central, República Dominicana
-================
-José Ramón Martínez Batlle
+---
+title: "Severidad/Intensidad de quemado <br> del incendio de enero de 2022 en Macutico, <br> Cordillera Central, República Dominicana"
+author: José Ramón Martínez Batlle
+# output: github_document
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-Nota: mapa interactivo en la [versión HTML](README.html) de este
-documento.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  collapse=TRUE,
+  out.width='100%',
+  fig.path = "img/"
+)
+```
+
+Nota: mapa interactivo en la [versión HTML](README.html) de este documento.
 
 ## Paquetes
 
-``` r
+```{r}
 library(raster)
-## Loading required package: sp
 library(leaflet)
 dnbr <- raster('data/dNBR_macutico.tif')
 dnbr_ll <- projectRaster(dnbr, crs = CRS('EPSG:4326'))
@@ -20,19 +31,17 @@ dnbr_ll <- projectRaster(dnbr, crs = CRS('EPSG:4326'))
 
 ## Mapa de intensidad (dNBR) generado en EarthEngine.
 
--   Código de EarthEngine
-    [aquí](https://code.earthengine.google.com/?scriptPath=users%2Fjoseramon%2Fpublic%3Aburn-severity-macutico-2022).
+- Código de EarthEngine [aquí](https://code.earthengine.google.com/?scriptPath=users%2Fjoseramon%2Fpublic%3Aburn-severity-macutico-2022).
 
--   Para aplicar a una cuenta de EarthEngine, [rellenar formulario de
-    aplicación](https://signup.earthengine.google.com/#!/).
+- Para aplicar a una cuenta de EarthEngine, [rellenar formulario de aplicación](https://signup.earthengine.google.com/#!/).
 
-``` r
+```{r}
 dnbr_utm <- projectRaster(dnbr, crs = CRS('EPSG:32619'))
 ```
 
 ## Rangos/matriz, reclasificar imagen dNBR
 
-``` r
+```{r}
 rangos <- c(
   -Inf, -500, -1,
   -500, -251, 1,
@@ -51,7 +60,7 @@ dnbr_rcl <- reclassify(dnbr_utm, rcl = rclmat, right=NA)
 
 ## Tabla de atributos, leyenda, colores
 
-``` r
+```{r}
 # Tabla de atributos
 dnbr_rcl <- ratify(dnbr_rcl)
 rat <- levels(dnbr_rcl)[[1]]
@@ -73,7 +82,7 @@ colores <- c("yellow2", "orange2")
 
 ## Mapa con leaflet
 
-``` r
+```{r}
 leaflet() %>%
   addTiles(group = 'OSM') %>%
   addProviderTiles("Esri.NatGeoWorldMap", group="ESRI Mapa") %>%
@@ -96,4 +105,3 @@ leaflet() %>%
   suppressWarnings()
 ```
 
-<img src="img/unnamed-chunk-5-1.png" width="100%" />
