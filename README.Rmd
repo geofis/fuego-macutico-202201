@@ -20,6 +20,16 @@ knitr::opts_chunk$set(
 
 Nota: mapa interactivo en la [versión HTML](https://geofis.github.io/fuego-macutico-202201/README.html) de este documento.
 
+El 3 de enero de 2022, los sensores MODIS y VIIRS detectaron puntos de calor sobre el área de Macutico, en el límite entre los parques nacionales Armando Bermúdez y José del Carmen Ramírez, cordillera Central de República Dominicana. Brigadas del Ministerio de Medio Ambiente sofocaron el incendio. Puntos de calor estuvieron visibles hasta, como muy tarde, el 12 de enero.
+
+![Anomalía térmica e imagen MODIS/Terra de 3 de enero de 2022. [Fuente](https://firms.modaps.eosdis.nasa.gov/map/#t:adv;m:advanced;d:2022-01-03;l:noaa20-viirs,viirs,modis_a,modis_t,protected_areas,terra_crc;@-71.1,19.0,10z)](modis-20220103.jpg)
+
+Usando escenas Landsat 8 (prefuego, 22/dic/2021; posfuego, 23/ene/2022), y aplicando una versión modificada del [*script* Google Earth Engine de UN-Spider "BURN SEVERITY MAPPING USING THE NORMALIZED BURN RATIO (NBR)"](https://un-spider.org/advisory-support/recommended-practices/recommended-practice-burn-severity/burn-severity-earth-engine), realicé un análisis de la intensidad de quemado en dicho incendio usando el diferencial del índice normalizado de quema (dNBR). Adapté el *script* fuente a la colección más reciente de imágenes Landsat 8 (LANDSAT/LC08/C02/T1_L2).
+
+![Demo en Google Earth Engine](demo-en-gee.gif)
+
+La web está repleta de recursos sobre esta técnica, recomiendo [esta particularmente](https://un-spider.org/es/node/10959). Como resultado del análisis aplicado a Macutico, estimé unos 9.5 km<sup>2</sup> de superficie quemada, predominantemente de baja intensidad. A continuación, muestro el código de análisis y visualización de R.
+
 ## Paquetes
 
 ```{r}
