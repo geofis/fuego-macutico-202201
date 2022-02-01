@@ -43,7 +43,6 @@ library(raster)
 ## Loading required package: sp
 library(leaflet)
 dnbr <- raster('data/dNBR_macutico.tif')
-dnbr_ll <- projectRaster(dnbr, crs = CRS('EPSG:4326'))
 ```
 
 ## Mapa de intensidad (dNBR) generado en EarthEngine.

@@ -1,8 +1,8 @@
 ---
 title: "Severidad/Intensidad de quemado <br> del incendio de enero de 2022 en Macutico, <br> Cordillera Central, República Dominicana"
 author: José Ramón Martínez Batlle
-# output: github_document
-output: html_document
+output: github_document
+# output: html_document
 editor_options: 
   chunk_output_type: console
 ---
@@ -36,7 +36,6 @@ La web está repleta de recursos sobre esta técnica, recomiendo [esta particula
 library(raster)
 library(leaflet)
 dnbr <- raster('data/dNBR_macutico.tif')
-dnbr_ll <- projectRaster(dnbr, crs = CRS('EPSG:4326'))
 ```
 
 ## Mapa de intensidad (dNBR) generado en EarthEngine.
