@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-Nota: mapa interactivo en la [versión HTML](README.html) de este documento.
+Nota: mapa interactivo en la [versión HTML](https://geofis.github.io/fuego-macutico-202201/README.html) de este documento.
 
 ## Paquetes
 

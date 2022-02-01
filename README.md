@@ -5,8 +5,9 @@ José Ramón Martínez Batlle
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-Nota: mapa interactivo en la [versión HTML](README.html) de este
-documento.
+Nota: mapa interactivo en la [versión
+HTML](https://geofis.github.io/fuego-macutico-202201/README.html) de
+este documento.
 
 ## Paquetes
 
